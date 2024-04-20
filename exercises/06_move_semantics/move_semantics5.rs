@@ -6,14 +6,15 @@
 // Execute `rustlings hint move_semantics5` or use the `hint` watch subcommand
 // for a hint.
 
-// I AM NOT DONE
 
 #[test]
 fn main() {
     let mut x = 100;
-    let y = &mut x;
-    let z = &mut x;
-    *y += 100;
-    *z += 1000;
+    let y = &mut x;// first mutable borrow occurs here
+    *y += 100;// first mutable borrow occurs here
+
+    let z = &mut x;// second mutable borrow occurs
+
+    *z += 1000;// second mutable occurs here
     assert_eq!(x, 1200);
 }
